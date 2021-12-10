@@ -1,0 +1,67 @@
+<html> 
+<body background="beach.jpg" style="background-repeat:no-repeat;background-size:100% 100%">
+
+<hr>
+<h1 align="center">LEZZGOOO GUYS!! BOOK NOW!</h1>
+<hr>
+
+<form action="reservation.php" method="post">
+  <div class="elem-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="visitor_name" placeholder="Name" pattern=[A-Z\sa-z]{3,20} required>
+  </div>
+  <div class="elem-group">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="visitor_email" placeholder="example@gmail.com" required>
+  </div>
+  <div class="elem-group">
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" name="visitor_phone" placeholder="+639605264810" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+  </div>
+  <hr>
+  <div class="elem-group inlined">
+    <label for="adult">Head</label>
+    <input type="number" id="head" name="total_head" placeholder="2" min="1" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="child">Children</label>
+    <input type="number" id="child" name="total_children" placeholder="2" min="0" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="checkin-date">Check-in Date</label>
+    <input type="date" id="checkin-date" name="checkin" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="checkout-date">Check-out Date</label>
+    <input type="date" id="checkout-date" name="checkout" required>
+  </div>
+  <hr><hr><hr>
+  
+  </div>
+  <button type="submit">Book The Rooms</button>
+</form>
+<script>
+var currentDateTime = new Date();
+var year = currentDateTime.getFullYear();
+var month = (currentDateTime.getMonth() + 1);
+var date = (currentDateTime.getDate() + 1);
+
+if(date < 10) {
+  date = '0' + date;
+}
+if(month < 10) {
+  month = '0' + month;
+}
+
+var dateTomorrow = year + "-" + month + "-" + date;
+var checkinElem = document.querySelector("#checkin-date");
+var checkoutElem = document.querySelector("#checkout-date");
+
+checkinElem.setAttribute("min", dateTomorrow);
+
+checkinElem.onchange = function () {
+    checkoutElem.setAttribute("min", this.value);
+}
+</script>
+</body>
+</html>
